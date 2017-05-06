@@ -16,6 +16,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainActivity_.intent(this).start();
+        LoginActivity_.intent(this).start();
     }
 }
