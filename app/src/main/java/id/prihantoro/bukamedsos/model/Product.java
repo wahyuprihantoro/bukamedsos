@@ -123,6 +123,13 @@ public class Product {
     @SerializedName("min_installment_price")
     public String minInstallmentPrice;
 
+    public int likes;
+    public int comments;
+    public boolean postedToInstagram;
+    public boolean postedToPinterest;
+    public boolean postedToFacebook;
+    public boolean postedToTwitter;
+
     @Override
     public String toString() {
         return new Gson().toJson(this);

@@ -1,13 +1,15 @@
 package id.prihantoro.bukamedsos;
 
-import android.util.Log;
-import android.widget.Toast;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.Subscribe;
 
+import id.prihantoro.bukamedsos.adapter.ProductAdapter;
 import id.prihantoro.bukamedsos.api.Retrofit;
 import id.prihantoro.bukamedsos.api.eventbusresult.MyLapakResult;
 import id.prihantoro.bukamedsos.api.service.ProductService;
@@ -23,6 +25,10 @@ public class HomeActivity extends BaseActivity {
     Prefs prefs;
     @Bean
     Retrofit retrofit;
+    @ViewById
+    RecyclerView rv;
+
+    ProductAdapter adapter;
 
     @AfterViews
     void init() {
@@ -31,7 +37,12 @@ public class HomeActivity extends BaseActivity {
 
     @Subscribe
     public void onMyLapakResult(MyLapakResult result) {
-        Toast.makeText(this, "" + result.response.isOk(), Toast.LENGTH_SHORT).show();
-        Log.d("wahyu produk", result.response.products.get(0).toString());
+        if (result.status) {
+            if (result.response.isOk()) {
+                adapter = new ProductAdapter(this, result.response.products);
+                rv.setLayoutManager(new LinearLayoutManager(this));
+                rv.setAdapter(adapter);
+            }
+        }
     }
 }
