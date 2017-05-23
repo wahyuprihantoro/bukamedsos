@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by wahyu on 13 Mei 2017.
  */
 
-public class LoginResponse extends BaseResponse {
+public class LoginResponse extends BasicResponse {
     @SerializedName("user_id")
     public int userId;
     @SerializedName("user_name")

@@ -1,7 +1,6 @@
 package id.prihantoro.bukamedsos.api;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
 
 import org.androidannotations.annotations.Bean;
@@ -11,7 +10,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
-import id.prihantoro.bukamedsos.api.result.BaseResult;
+import id.prihantoro.bukamedsos.api.result.BasicResult;
 import id.prihantoro.bukamedsos.storage.Prefs;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
@@ -28,9 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @EBean
 public class Retrofit {
-    //    public static final String BASE_URL = "https://nomaden-api.herokuapp.com/";
-//    public static final String BASE_URL = "http://li1620-177.members.linode.com/";
-//    public static final String BASE_URL = "http://api.nomaden.co/";
     public static final String BASE_URL = "https://api.bukalapak.com/v2/";
 
     private static retrofit2.Retrofit retrofit;
@@ -39,15 +35,15 @@ public class Retrofit {
     @Bean
     Prefs prefs;
 
-    public <T> T getService(Class<T> serviceClass) {
-        return getRetrofit().create(serviceClass);
+    public <T> T getGeneralService(Class<T> service) {
+        return getRetrofit().create(service);
     }
 
-    public <T> T getServiceBasicAuth(Class<T> serviceClass, String username, String password) {
-        return getRetrofit(username, password).create(serviceClass);
+    public <T> T getServiceBasicAuth(Class<T> service, String username, String password) {
+        return getRetrofit(username, password).create(service);
     }
 
-    public retrofit2.Retrofit getRetrofit() {
+    private retrofit2.Retrofit getRetrofit() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(new Interceptor() {
             @Override
@@ -55,7 +51,6 @@ public class Retrofit {
                 Request original = chain.request();
                 Request request;
                 request = original.newBuilder()
-                        .header("User-Agent", "Android: " + Build.MANUFACTURER + " " + Build.MODEL)
                         .header("authorization", prefs.getToken())
                         .method(original.method(), original.body())
                         .build();
@@ -75,7 +70,7 @@ public class Retrofit {
         return retrofit;
     }
 
-    public retrofit2.Retrofit getRetrofit(String username, String password) {
+    private retrofit2.Retrofit getRetrofit(String username, String password) {
         final String basic = Credentials.basic(username, password);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(new Interceptor() {
@@ -84,7 +79,6 @@ public class Retrofit {
                 Request original = chain.request();
                 Request request;
                 request = original.newBuilder()
-                        .header("User-Agent", "Android: " + Build.MANUFACTURER + " " + Build.MODEL)
                         .header("Authorization", basic)
                         .method(original.method(), original.body())
                         .build();
@@ -104,7 +98,7 @@ public class Retrofit {
         return retrofit;
     }
 
-    public Callback getCallback(final BaseResult result) {
+    public Callback getCallback(final BasicResult result) {
         return new Callback() {
             @Override
             public void onResponse(Call call, retrofit2.Response response) {
