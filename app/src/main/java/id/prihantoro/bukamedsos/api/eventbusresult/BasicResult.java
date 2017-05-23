@@ -1,4 +1,4 @@
-package id.prihantoro.bukamedsos.api.result;
+package id.prihantoro.bukamedsos.api.eventbusresult;
 
 /**
  * Created by wahyu on 14 Maret 2017.

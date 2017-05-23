@@ -1,4 +1,4 @@
-package id.prihantoro.bukamedsos.api;
+package id.prihantoro.bukamedsos.api.service;
 
 import id.prihantoro.bukamedsos.api.response.LoginResponse;
 import retrofit2.Call;

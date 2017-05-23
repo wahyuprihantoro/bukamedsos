@@ -1,4 +1,4 @@
-package id.prihantoro.bukamedsos.api.result;
+package id.prihantoro.bukamedsos.api.eventbusresult;
 
 import id.prihantoro.bukamedsos.api.response.LoginResponse;
 

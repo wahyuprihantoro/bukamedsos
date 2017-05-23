@@ -9,7 +9,6 @@ public class BasicResponse {
     public String message;
 
     public boolean isOk() {
-        if (status == null) return false;
-        return status.equalsIgnoreCase("ok");
+        return status != null && status.equalsIgnoreCase("ok");
     }
 }

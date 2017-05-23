@@ -3,6 +3,8 @@ package id.prihantoro.bukamedsos.storage;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
+import okhttp3.Credentials;
+
 
 /**
  * Created by wahyu on 13 Maret 2017.
@@ -51,5 +53,9 @@ public class Prefs {
 
     public void setEmail(String email) {
         sharedPref.edit().email().put(email).apply();
+    }
+
+    public String getCredential() {
+        return Credentials.basic(getUserId() + "", getToken());
     }
 }

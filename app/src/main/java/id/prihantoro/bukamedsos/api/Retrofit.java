@@ -10,7 +10,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
-import id.prihantoro.bukamedsos.api.result.BasicResult;
+import id.prihantoro.bukamedsos.api.eventbusresult.BasicResult;
 import id.prihantoro.bukamedsos.storage.Prefs;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
@@ -29,7 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Retrofit {
     public static final String BASE_URL = "https://api.bukalapak.com/v2/";
 
-    private static retrofit2.Retrofit retrofit;
     @RootContext
     Context context;
     @Bean
@@ -51,7 +50,7 @@ public class Retrofit {
                 Request original = chain.request();
                 Request request;
                 request = original.newBuilder()
-                        .header("authorization", prefs.getToken())
+                        .header("Authorization", prefs.getCredential())
                         .method(original.method(), original.body())
                         .build();
 
@@ -61,13 +60,11 @@ public class Retrofit {
         });
 
         OkHttpClient client = httpClient.build();
-        retrofit = new retrofit2.Retrofit.Builder()
+        return new retrofit2.Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-
-        return retrofit;
     }
 
     private retrofit2.Retrofit getRetrofit(String username, String password) {
@@ -89,13 +86,11 @@ public class Retrofit {
         });
 
         OkHttpClient client = httpClient.build();
-        retrofit = new retrofit2.Retrofit.Builder()
+        return new retrofit2.Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-
-        return retrofit;
     }
 
     public Callback getCallback(final BasicResult result) {

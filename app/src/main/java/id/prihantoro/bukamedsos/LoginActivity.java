@@ -15,10 +15,10 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
 import org.greenrobot.eventbus.Subscribe;
 
-import id.prihantoro.bukamedsos.api.LoginService;
+import id.prihantoro.bukamedsos.api.service.LoginService;
 import id.prihantoro.bukamedsos.api.Retrofit;
 import id.prihantoro.bukamedsos.api.response.LoginResponse;
-import id.prihantoro.bukamedsos.api.result.LoginResult;
+import id.prihantoro.bukamedsos.api.eventbusresult.LoginResult;
 import id.prihantoro.bukamedsos.storage.Prefs;
 
 /**
