@@ -1,0 +1,27 @@
+<tabs>
+    <tab
+        barColorWhenSelected="@color/facebook"
+        icon="@drawable/ic_facebook"
+        id="@+id/tab_facebook"
+        title="Facebook" />
+    <tab
+        barColorWhenSelected="@color/twitter"
+        icon="@drawable/ic_twitter"
+        id="@+id/tab_twitter"
+        title="Twitter" />
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_bl"
+        id="@+id/tab_bl"
+        title="Bukalapak" />
+    <tab
+        barColorWhenSelected="@color/pinterest"
+        icon="@drawable/ic_pinterest"
+        id="@+id/tab_pinterest"
+        title="Pinterest" />
+    <tab
+        barColorWhenSelected="@color/instagram"
+        icon="@drawable/ic_instagram"
+        id="@+id/tab_instagram"
+        title="Instagram" />
+</tabs>

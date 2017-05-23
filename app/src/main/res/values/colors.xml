@@ -300,4 +300,10 @@
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
+
+    <!--social media colors-->
+    <color name="instagram">#fb3958</color>
+    <color name="facebook">#3b5998</color>
+    <color name="twitter">#55acee</color>
+    <color name="pinterest">#cb2027</color>
 </resources>

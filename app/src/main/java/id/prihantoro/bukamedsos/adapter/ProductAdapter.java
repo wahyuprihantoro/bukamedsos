@@ -1,6 +1,8 @@
 package id.prihantoro.bukamedsos.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import id.prihantoro.bukamedsos.R;
+import id.prihantoro.bukamedsos.SocialMediaActivity_;
 import id.prihantoro.bukamedsos.model.Product;
 import id.prihantoro.bukamedsos.util.Utils;
 
@@ -44,6 +47,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.likes.setText(p.likes + " like" + (p.likes > 0 ? "s" : ""));
         holder.comments.setText(p.comments + " comment" + (p.comments > 0 ? "s" : ""));
         Glide.with(context).load(p.images.get(0)).into(holder.image);
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SocialMediaActivity_.intent(context).flags(Intent.FLAG_ACTIVITY_NEW_TASK).start();
+            }
+        });
     }
 
     @Override
@@ -55,6 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         public ImageView image, instagram, facebook, pinterest, twitter;
         public TextView name, price, likes, comments;
+        public CardView cv;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -67,6 +77,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             price = (TextView) itemView.findViewById(R.id.price);
             likes = (TextView) itemView.findViewById(R.id.likes);
             comments = (TextView) itemView.findViewById(R.id.comments);
+            cv = (CardView) itemView.findViewById(R.id.cv);
         }
     }
 }
