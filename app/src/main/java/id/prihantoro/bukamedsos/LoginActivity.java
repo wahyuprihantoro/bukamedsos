@@ -15,10 +15,10 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
 import org.greenrobot.eventbus.Subscribe;
 
-import id.prihantoro.bukamedsos.api.service.LoginService;
 import id.prihantoro.bukamedsos.api.Retrofit;
-import id.prihantoro.bukamedsos.api.response.LoginResponse;
 import id.prihantoro.bukamedsos.api.eventbusresult.LoginResult;
+import id.prihantoro.bukamedsos.api.response.LoginResponse;
+import id.prihantoro.bukamedsos.api.service.LoginService;
 import id.prihantoro.bukamedsos.storage.Prefs;
 
 /**
@@ -49,6 +49,10 @@ public class LoginActivity extends BaseActivity {
 
     @AfterViews
     void init() {
+        if (!prefs.getToken().isEmpty()) {
+            HomeActivity_.intent(this).start();
+            finish();
+        }
         oldColorTextView = usernameForm.getTextColors();
     }
 
